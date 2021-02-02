@@ -4,19 +4,27 @@ package com.practice.inventory.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
+
 //@Data
 @Document(collection = "items")
 public class Item {
     @Id
     private String id;
-    private String itemName;
-    private String itemDesc;
-    private Float price;
 
-    public Item(String itemName, String itemDesc, Float price) {
+    @NotBlank(message = "Invalid Item Name")
+    private String itemName;
+
+    @NotBlank(message = "Invalid Item Description")
+    private String itemDesc;
+
+    @NotBlank(message = "Invalid Item Price")
+    private Float itemPrice;
+
+    public Item(String itemName, String itemDesc, Float itemPrice) {
         this.itemName = itemName;
         this.itemDesc = itemDesc;
-        this.price = price;
+        this.itemPrice = itemPrice;
     }
 
     public String getId() {
@@ -31,14 +39,26 @@ public class Item {
         return itemDesc;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
+    }
+
+    public void setItemPrice(Float itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     @Override
     public String toString() {
         return String.format(
                 "Item[id=%s, itemName='%s', itemDesc='%s', itemPrice=%s]",
-                id, itemName, itemDesc, price);
+                id, itemName, itemDesc, itemPrice);
     }
 }
