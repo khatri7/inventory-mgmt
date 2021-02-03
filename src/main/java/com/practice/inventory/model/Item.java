@@ -1,12 +1,12 @@
 package com.practice.inventory.model;
 
-//import lombok.Data;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 
-//@Data
+@Data
 @Document(collection = "items")
 public class Item {
     @Id
@@ -20,16 +20,6 @@ public class Item {
 
     @NotBlank(message = "Invalid Item Price")
     private Float itemPrice;
-
-    public Item(String itemName, String itemDesc, Float itemPrice) {
-        this.itemName = itemName;
-        this.itemDesc = itemDesc;
-        this.itemPrice = itemPrice;
-    }
-
-    public String getId() {
-        return id;
-    }
 
     public String getItemName() {
         return itemName;
@@ -55,10 +45,9 @@ public class Item {
         this.itemPrice = itemPrice;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Item[id=%s, itemName='%s', itemDesc='%s', itemPrice=%s]",
-                id, itemName, itemDesc, itemPrice);
+    public Item(String itemName, String itemDesc, Float itemPrice) {
+        this.itemName = itemName;
+        this.itemDesc = itemDesc;
+        this.itemPrice = itemPrice;
     }
 }

@@ -77,11 +77,12 @@ public class ItemService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> getItemNameById(String id) {
-        String item = getItemById(id).getBody().toString();
-        String itemName = item.substring(item.indexOf("itemName")+10, item.indexOf("itemDesc")-3);
-        JSONObject itemNameObj = new JSONObject();
-        itemNameObj.put("itemName", itemName);
-        return new ResponseEntity<JSONObject>(itemNameObj, HttpStatus.OK);
-    }
+//    public String getItemNameById(String id) {
+//        String item = getItemById(id).getBody().toString();
+//        String itemName = item.substring(item.indexOf("itemName")+9, item.indexOf("itemDesc")-3);
+////        JSONObject itemNameObj = new JSONObject();
+////        itemNameObj.put("itemName", itemName);
+//        return itemName;
+////        return new ResponseEntity<JSONObject>(itemNameObj, HttpStatus.OK);
+//    }
 }
