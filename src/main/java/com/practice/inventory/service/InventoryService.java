@@ -64,6 +64,30 @@ public class InventoryService {
 //        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //    }
 
+    public ResponseEntity<?> getAvailableItemQty(String itemId) {
+        int totalAvailableQty = 0;
+        JSONObject totalQtyResponse = new JSONObject();
+        totalQtyResponse.put("itemId", itemId);
+        JSONArray itemQtyArray = new JSONArray();
+        List<Inventory> inventoryList = inventoryRepository.findAll();
+        for(Inventory inventory : inventoryList) {
+            for(InventoryItem inventoryItem : inventory.getInventoryItems()) {
+                if(inventoryItem.getItemId().equals(itemId)){
+                    JSONObject inventoryObj = new JSONObject();
+                    inventoryObj.put("inventoryId", inventory.getInventoryId());
+                    inventoryObj.put("qty", inventoryItem.getQty());
+                    totalAvailableQty+=inventoryItem.getQty();
+                    itemQtyArray.add(inventoryObj);
+                    break;
+                }
+            }
+        }
+        totalQtyResponse.put("totalQty", totalAvailableQty);
+        totalQtyResponse.put("inventories", itemQtyArray);
+
+        return new ResponseEntity<JSONObject>(totalQtyResponse, HttpStatus.OK);
+    }
+
     public ResponseEntity<?> addInventory(Inventory newInventory) {
         try {
             inventoryRepository.save(newInventory);

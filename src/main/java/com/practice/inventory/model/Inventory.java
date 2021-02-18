@@ -16,9 +16,13 @@ public class Inventory {
 //    @JsonIgnore
     private InventoryItem[] inventoryItems;
 
-//    public InventoryItem[] getInventoryItems() {
-//        return inventoryItems;
-//    }
+    public String getInventoryId() {
+        return inventoryId;
+    }
+
+    public InventoryItem[] getInventoryItems() {
+        return inventoryItems;
+    }
 
     public Inventory(String inventoryName, String inventoryAddress, InventoryItem[] inventoryItems) {
         this.inventoryName = inventoryName;

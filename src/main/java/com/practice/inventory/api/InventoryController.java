@@ -25,4 +25,9 @@ public class InventoryController {
     public ResponseEntity<?> addInventory(@RequestBody Inventory newInventory) {
         return inventoryService.addInventory(newInventory);
     }
+
+    @GetMapping("/items/{itemId}")
+    public ResponseEntity<?> getAvailableItemQuantity(@PathVariable("itemId") String itemId) {
+        return inventoryService.getAvailableItemQty(itemId);
+    }
 }

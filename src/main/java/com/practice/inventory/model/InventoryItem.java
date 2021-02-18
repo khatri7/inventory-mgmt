@@ -13,4 +13,8 @@ public class InventoryItem {
     public String getItemId() {
         return itemId.toString();
     }
+
+    public Integer getQty() {
+        return qty;
+    }
 }
